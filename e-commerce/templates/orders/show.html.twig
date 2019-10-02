@@ -1,0 +1,88 @@
+{% extends 'frontbase.html.twig' %}
+{% block title %} Sipariş Detay{% endblock %}
+{% block header %} {{ include ('home/_header.html.twig') }} {% endblock %}
+{% block sidebar %} {{ include ('home/_usersidebar.html.twig') }} {% endblock %}
+
+{% block content %}
+
+    <div style="margin-right: 95px; margin-top: 20px;" class="col-md-8 address_form_agile">
+        <h4>Kargo Alıcı Bilgileri</h4>
+        <form name="order" action="" method="post" class="creditly-card-form agileinfo_form">
+            <section class="creditly-wrapper wthree, w3_agileits_wrapper">
+                <div class="information-wrapper">
+                    <div class="first-row form-group">
+
+                            <div class="clear"> </div>
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">AD: </label>
+                            <input class="form-control" type="text" name="orders[city]" value="{{ order.name }}" disabled>
+                        </div>
+                    <div class="w3_agileits_card_number_grid_right">
+                        <div class="controls">
+                            <label class="control-label">Miktar: </label>
+                            <input class="form-control" type="text" name="orders[address]" value="{{ order.amount }} ₺ " disabled>
+                        </div>
+                    </div>
+                        <div class="controls">
+                            <label class="control-label">Adres: </label>
+                            <input class="form-control" type="text" name="orders[city]" value="{{ order.address }}" disabled>
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Şehir: </label>
+                            <input class="form-control" type="text" name="orders[city]" value="{{ order.city }}" disabled>
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Telefon: </label>
+                            <input class="form-control" type="text" name="orders[city]" value="{{ order.phone }}" disabled>
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Sipariş Bilgi: </label>
+                            <input class="form-control" type="text" name="orders[city]" value="{{ order.shipinfo }}" disabled>
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Durum: </label>
+                            <input class="form-control" type="text" name="orders[city]" value="{{ order.status }}" disabled>
+                        </div>
+                    </div>
+            </section>
+        </form>
+
+        <div class="agileinfo_single">
+            <div class="privacy about" style="margin-top: -100px">
+                <div class="checkout-right" >
+                    <table class="timetable_sub">
+                        <thead>
+                        <tr>
+                            <th>Ürün Adı</th>
+                            <th>Ürün Fiyatı</th>
+                            <th>Miktar</th>
+                            <th>Toplam Fiyat</th>
+                            <th>Durum</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for rs in orderdetail %}
+                            <tr class="rem1">
+                                <td class="invert">{{ rs.name }}</td>
+                                <td class="invert">{{ rs.price }} ₺</td>
+                                <td class="invert">{{ rs.quantity }}</td>
+                                <td class="invert">{{ rs.amount}} ₺</td>
+                                <td class="invert">{{ rs.status}}</td>
+                            </tr>
+                        {% else %}
+                            <tr class="invert">
+                                <td colspan="5">Sipariş Detay!</td>
+                            </tr>
+                        {% endfor %}
+                        <tr class="invert">
+                            <td colspan="5"> Toplam Alışveriş Tutarı: {{ order.amount }} ₺</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+{% endblock %}

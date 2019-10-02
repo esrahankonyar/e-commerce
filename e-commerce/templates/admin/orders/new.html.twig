@@ -1,0 +1,10 @@
+{% extends 'frontbase.html.twig' %}
+{% block title %} Sipariş Tamamla {% endblock %}
+{% block header %} {{ include ('home/_header.html.twig') }} {% endblock %}
+{% block sidebar %} {{ include ('home/_usersidebar.html.twig') }} {% endblock %}
+
+
+{% block content %}
+    <h1>Oluşturulan Sipariş</h1>
+    {{ include('orders/_form.html.twig') }}
+{% endblock %}

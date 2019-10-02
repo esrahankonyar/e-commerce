@@ -1,0 +1,32 @@
+{% extends 'frontbase.html.twig' %}
+{% block title %}Hakkımızda {{ data[0].title }}{% endblock %}
+{% block keywords %}{{ data[0].keywords }}{% endblock %}
+{% block description %}{{ data[0].description }}{% endblock %}
+{% block header %} {{ include ('home/_header.html.twig') }} {% endblock %}
+{% block sidebar %} {{ include ('home/_sidebar.html.twig') }} {% endblock %}
+{% block content %}
+
+    <!-- about -->
+    <!-- banner -->
+    <div class="banner">
+        <div class="w3l_banner_nav_right">
+            <!-- about -->
+            <div class="privacy about">
+                <h3>Hakkımızda</h3>
+                <p class="animi">
+                    {{ data[0].aboutus|raw }}
+                </p>
+                <div class="agile_about_grids">
+                    <div class="col-md-6 agile_about_grid_right">
+                        <img src="{{ asset('uploads') }}/images/31.jpg" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <!-- //about -->
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+{% endblock %}
+

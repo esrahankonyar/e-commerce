@@ -1,0 +1,51 @@
+{% extends 'frontbase.html.twig' %}
+{% block title %} Sipariş Listesi {% endblock %}
+{% block header %} {{ include ('home/_header.html.twig') }} {% endblock %}
+{% block sidebar %} {{ include ('home/_usersidebar.html.twig') }} {% endblock %}
+{% block content %}
+    <div class="w3l_banner_nav_right">
+        <div class="agileinfo_single">
+            {{ include('messages.html.twig') }}
+            <div class="privacy about" style="margin-top: -100px">
+                <div class="checkout-right" >
+                    <h4>Sİparİş Lİstenİz : </h4>
+                    <table class="timetable_sub">
+                        <thead>
+                        <tr>
+                            <th>Ad</th>
+                            <th>Miktar</th>
+                            <th>Şehir</th>
+                            <th>Telefon</th>
+                            <th>Sipariş Bilgi</th>
+                            <th>Durum</th>
+                            <th>Görüntüle</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for order in orders %}
+                            <tr class="rem1">
+                                <td class="invert">{{ order.name }}</td>
+                                <td class="invert">{{ order.amount }} ₺</td>
+                                <td class="invert">{{ order.city }}</td>
+                                <td class="invert">{{ order.phone }}</td>
+                                <td class="invert">{{ order.shipinfo }}</td>
+                                <td class="invert">{{ order.status }}</td>
+                                <td>
+                                    <a href="{{ path('orders_show', {'id': order.id}) }}">Görüntüle</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr class="invert">
+                                <td colspan="7">Siparişiniz Bulunmamaktadır</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+{% endblock %}

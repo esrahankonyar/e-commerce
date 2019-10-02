@@ -1,0 +1,33 @@
+<!-- top-brands -->
+<div class="top-brands">
+    <div class="container">
+        <h3>ÜRÜNLER</h3>
+        <div class="agile_top_brands_grids">
+            {% for rs in rand %}
+            <div class="col-md-3 top_brand_left">
+                <div class="hover14 column">
+                    <div class="agile_top_brand_left_grid">
+                        <div class="agile_top_brand_left_grid1">
+                            <figure>
+                                <div class="snipcart-item block" >
+                                    <div class="snipcart-thumb">
+                                        <a href="{{ path('product_detail',{'id':rs.id}) }}"><img title=" " alt=" " src="{{ asset('uploads') }}/images/{{ rs.image }}" /></a>
+                                        <p>{{ rs.title }}</p>
+                                        <h4>{{ rs.sprice }} ₺</h4>
+                                        <div class="snipcart-details top_brand_home_details">
+                                                <form action="{{ path('product_detail', {'id': rs.id}) }}" >
+                                                        <input type="submit" name="submit" value="Satın Al" class="button" />
+                                                </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           {% endfor %}
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>

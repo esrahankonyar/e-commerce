@@ -1,0 +1,86 @@
+{% extends 'frontbase.html.twig' %}
+{% block title %} {{ data[0].title }}{% endblock %}
+{% block keywords %}{{ data[0].keywords }}{% endblock %}
+{% block description %}{{ data[0].description }}{% endblock %}
+{% block header %} {{ include ('home/_header.html.twig') }} {% endblock %}
+{% block sidebar %} {{ include ('home/_sidebar.html.twig') }} {% endblock %}
+
+{% block content %}
+    <style>.moreOptopm.carousel .carousel-control,.moreOptopm.carousel .carousel-control:hover {background:transparent; }
+        .moreOptopm.carousel .carousel-control,.moreOptopm.carousel .carousel-control:hover {background:transparent; }
+        .moreOptopm.carousel .carousel-control {border: 0; top: 50%; bottom: 0;}
+        .moreOptopm.carousel .carousel-control.right, .moreOptopm.carousel .carousel-control.right:hover {right:0; }
+        .moreOptopm.carousel .carousel-control.right, .moreOptopm.carousel .carousel-control.right:hover {right:0; }
+        .moreOptopm.carousel .carousel-control.left, .moreOptopm.carousel .carousel-control.left:hover {left:0; }
+        .moreOptopm.carousel .carousel-control.left, .moreOptopm.carousel .carousel-control.left:hover {left:0; }
+        .moreOptopm.carousel .carousel-control, .moreOptopm.carousel .carousel-control:hover {color: #84c639;}
+        .moreOptopm.carousel .carousel-control, .moreOptopm.carousel .carousel-control:hover {color: #84c639;}
+        .carousel-control {border: 0px; border-radius:2px}
+        .carousel-control, .carousel-control:hover {background: rgb(132, 198, 57); height:43px; line-height:34px; color: #fff;}
+        .carousel-control, .carousel-control:hover {background: rgb(132, 198, 57); height:43px; line-height:34px; color: #fff;}
+        .carousel-control {top: 50%;}
+        .carousel-control.left{left: -15600px;}
+        .carousel-control.right{right: -15600px;}
+        .carousel:hover .carousel-control.right{right: 8px; left: auto;}
+        .carousel:hover .carousel-control.left{left: 8px;}
+        #newProductCar .carousel-control {position: absolute;top: -48px;width: 24px;height: 24px;margin-top: 0;font-size: 16px;font-weight: bold;line-height: 1.5em;color: #ffffff;text-align: center;background: #84c639;border: 0;-webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0;}
+        #newProductCar .carousel-control.right {right: 8px; left: auto;}
+        #newProductCar .carousel-control.left {right: 38px; left: auto;}</style>
+    <div class="w3l_banner_nav_right">
+        <div class="agileinfo_single">
+            <h5>{{ data[0].title }}</h5>
+            <div class="col-md-4">
+                <div class="row-fluid">
+                    <div class="span5">
+                        <div id="myCarousel" class="carousel slide cntr">
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <a href="#"> <img src="{{ asset('uploads') }}/images/{{ data[0].image }}" alt="" style="margin-left: 75px"></a>
+                                </div>
+                                {% for rs in images %}
+                                    <div class="item">
+                                        <a href="#"> <img src="{{ asset('uploads') }}/images/{{ rs.image }}" alt="" style="margin-left: 75px"></a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                            <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 agileinfo_single_right">
+                <div class="w3agile_description">
+                    <h4>Açıklama :</h4>
+                    <p>{{ data[0].description }}</p>
+                </div>
+                <div class="snipcart-item block">
+                    <div class="snipcart-thumb agileinfo_single_right_snipcart">
+                        <h4>Adet / Kg: {{ data[0].sprice }} ₺</h4>
+                    <br>
+
+                        <form name='shopcart' action="{{ path('shopcart_new') }}" method="post">
+                            <fieldset>
+                                <h4>Adet / Kg: </h4><input type="number" name="shopcart[quantity]" class="span6" value="1" placeholder="Qty" max="{{ data[0].amount }}" min="1" style="width: 180px;">
+                                <div class="snipcart-details">
+
+                                    <input type="hidden" name="shopcart[productid]"  value="{{ data[0].id }}">
+                                    <input type="hidden" name="token" value="{{ csrf_token('add-item') }}">
+                                    <input type="submit" style="width: 150px; margin-right: 300px;" name="submit" value="Sepete Ekle" class="button" />
+                                </div>
+                            </fieldset>
+                        </form>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="well" style="margin-top: 50px; margin-left: 350px; margin-right: 80px; margin-bottom: 30px;">{{ data[0].detail|raw }}</div>
+{% endblock %}
+
+

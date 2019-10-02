@@ -1,0 +1,75 @@
+{% extends 'frontbase.html.twig' %}
+{% block title %}İletişim {{ data[0].title }}{% endblock %}
+{% block keywords %}{{ data[0].keywords }}{% endblock %}
+{% block description %}{{ data[0].description }}{% endblock %}
+
+
+
+{% block header %}
+
+    {{ include ('home/_header.html.twig') }}
+    <div class="products-breadcrumb">
+        <div class="container">
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block sidebar %} {{ include ('home/_sidebar.html.twig') }} {% endblock %}
+{% block content %}
+
+
+
+    <!-- //header -->
+    <!-- products-breadcrumb -->
+
+    <!-- //products-breadcrumb -->
+    <!-- banner -->
+    <div class="banner">
+        <div class="w3l_banner_nav_right">
+            <!-- mail -->
+            <div class="mail">
+                <h3>İletişim</h3>
+                <div class="agileinfo_mail_grids">
+                    <div class="col-md-4 agileinfo_mail_grid_left">
+                        {{ data[0].contact|raw }}
+                    </div>
+                    <div class="col-md-8 agileinfo_mail_grid_right">
+                        {{ include('messages.html.twig') }}<!--//uyarı mesajlarını include ettik-->
+                        <form action="" method="post">
+                            <div class="col-md-12 wthree_contact_left_grid">
+                                <input type="text" name="messages[name]" value="Name*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name*';}" required="">
+                            </div>
+                            <div style="margin-bottom: 15px" class="col-md-12 wthree_contact_left_grid">
+                                <input type="email" name="messages[email]" value="Email*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email*';}" required="">
+                            </div>
+                            <div class="col-md-12 wthree_contact_left_grid">
+                                <input type="text" name="messages[subject]" value="Subject*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Subject*';}" required="">
+                            </div>
+                            <div class="clearfix"> </div>
+                            <textarea  name="messages[message]" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
+                            <input type="hidden" name="messages[status]" value="New"/>
+                            <input type="hidden" name="token" value="{{ csrf_token('form-messeage') }}"/>
+                            <input type="submit" value="GÖNDER">
+                            <input type="reset" value="Clear">
+                        </form>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <!-- //mail -->
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!-- //banner -->
+    <!-- map -->
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d96748.15352429623!2d-74.25419879353115!3d40.731667701988506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sshopping+mall+in+New+York%2C+NY%2C+United+States!5e0!3m2!1sen!2sin!4v1467205237951" style="border:0"></iframe>
+    </div>
+    <!-- //map -->
+
+
+
+
+{% endblock %}
+

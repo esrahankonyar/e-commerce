@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}Startmin - Bootstrap Admin Theme{% endblock %}</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('admin') }}/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="{{ asset('admin') }}/css/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('admin') }}/css/startmin.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{{ asset('admin') }}/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <SCRIPT language="JavaScript" type="text/javascript">
+        function  openWin(windowURL, windowName, windowFeatures) {
+            window.open(windowURL,windowName,windowFeatures);
+        }
+    </SCRIPT>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.1.1/classic/ckeditor.js"></script>
+</head>
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ path('admin') }}">Admin Panel</a>
+        </div>
+
+
+
+        <ul class="nav navbar-nav navbar-left navbar-top-links">
+            <li><a href="{{ path('admin') }}"><i class="fa fa-home fa-fw"></i> Pazar <span>Sanal</span> Market</a></li>
+        </ul>
+
+        <ul class="nav navbar-right navbar-top-links">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i>{{ app.user.name }}<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="{{ path('admin_setting_index') }}"><i class="fa fa-gear fa-fw"></i>Ayarlar</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="{{ path('app_logout') }}"><i class="fa fa-sign-out fa-fw"></i> Çıkış Yap</a>
+                    </li>
+                </ul>
+            </li>
+            {% else %}
+                Login olunmadı!
+            {% endif %}
+        </ul>
+        <!-- /.navbar-top-links -->
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="{{ path('admin') }}"><i class="fa fa-dashboard fa-fw"></i> Anasayfa</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-shopping-basket"></i> Siparişler<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{ path('admin_orders_index', {'slug': 'new'}) }}">Yeni Siparişler</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('admin_orders_index', {'slug': 'accepted'}) }}">Onaylanan Siparişler</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('admin_orders_index', {'slug': 'inshipping'}) }}">Kargolanan Siparişler</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('admin_orders_index', {'slug': 'canceled'}) }}">İptal Edilen Siparişler</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('admin_orders_index', {'slug': 'completed'}) }}">Tamamlanan Siparişler</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_product_index') }}"><i class="fa fa-product-hunt"></i> Ürünler</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_category_index') }}"><i class="fa fa-table fa-fw"></i> Kategoriler</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('admin') }}/user"><i class="fa fa-users"></i> Üyeler</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_messages_index') }}"><i class="fa fa-envelope"></i> Üye Mesajları</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_setting_index') }}"><i class="fa fa-cogs"></i> Ayarlar</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    {% block content %} {% endblock %}
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /#page-wrapper -->
+
+
+
+
+
+</div>
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<script src="{{ asset('admin') }}/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{{ asset('admin') }}/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="{{ asset('admin') }}/js/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="{{ asset('admin') }}/js/startmin.js"></script>
+
+
+
+
+
+
+
+<!-- DataTables JavaScript -->
+<script src="{{ asset('admin') }}/js/dataTables/jquery.dataTables.min.js"></script>
+<script src="{{ asset('admin') }}/js/dataTables/dataTables.bootstrap.min.js"></script>
+
+
+
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+</script>
+
+{% block javascripts %}{% endblock %}
+
+</body>
+</html>

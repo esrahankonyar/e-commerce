@@ -1,0 +1,22 @@
+{% for label, flashes in app.session.flashbag.all %}
+    {% for flash in flashes %}
+        {% if ( label=='success' ) %}
+
+            <div class="alert alert-success">
+                {{ flash }} <a href="#" class="alert-link">Başarılı!</a>.
+            </div>
+        {% elseif  ( label=='error' ) %}
+            <div class="alert alert-danger">
+                {{ flash }} <a href="#" class="alert-link">Hata!</a>.
+            </div>
+        {% elseif  ( label=='info' ) %}
+            <div class="alert alert-info">
+                {{ flash }} <a href="#" class="alert-link">Bilgi!</a>.
+            </div>
+        {% elseif  ( label=='warning' ) %}
+            <div class="alert alert-warning">
+                {{ flash }} <a href="#" class="alert-link">Uyarı!</a>.
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endfor %}

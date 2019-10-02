@@ -1,0 +1,69 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}Ürün Listesi{% endblock %}
+{% block content %}
+    <h1 class="page-header">Ürün Listesi
+        <small><a href="{{ path('admin_product_new') }}" class="btn btn-success"> Ürün Ekleme </a></small>
+    </h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    DataTables Advanced Tables
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
+                                        <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>User Id</th>
+                                            <th>Miktar</th>
+                                            <th>Ad</th>
+                                            <th>Adres</th>
+                                            <th>Şehir</th>
+                                            <th>Telefon</th>
+                                            <th>Kargo Bilgisi</th>
+                                            <th>Durum</th>
+                                            <th>Hareket</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for order in orders %}
+                                            <tr class="rem1">
+                                                <td class="invert">{{ order.id }}</td>
+                                                <td class="invert">{{ order.userid }}</td>
+                                                <td class="invert">{{ order.amount }} ₺</td>
+                                                <td class="invert">{{ order.name }}</td>
+                                                <td class="invert">{{ order.address }} ₺</td>
+                                                <td class="invert">{{ order.city }}</td>
+                                                <td class="invert">{{ order.phone }}</td>
+                                                <td class="invert">{{ order.shipinfo }}</td>
+                                                <td class="invert"> {{ order.status }}</td>
+                                                <td>
+                                                    <a href="javascript:openWin('{{ path('admin_orders_show', {'id': order.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=100,left=200,menuBar=no,scrollBars=no,resizable=no,width=750,height=600');" class="btn btn-info">Detay</a>
+                                                </td>
+                                            </tr>
+                                        {% else %}
+                                            <tr class="invert">
+                                                <td colspan="10">Kayıt Bulunmamaktadır!</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}Kategori Ekle{% endblock %}
+{% block content %}
+    <h1 class="page-header">Kategori Ekle</h1>
+    <div class="row">
+
+
+        {{ include('admin/category/_form.html.twig') }}
+
+        <a href="{{ path('admin_category_index') }}">back to list</a>
+    </div>
+
+{% endblock %}

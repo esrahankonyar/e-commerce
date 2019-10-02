@@ -1,0 +1,87 @@
+<div class="checkout-left">
+    <div style="margin-left: 95px" class="col-md-8 checkout-left-basket">
+        <h4>Sepetinizdeki Ürünler</h4>
+        <ul>
+            {% for shopcart in shopcarts %}
+                <li>{{ shopcart.title }}<i></i> <span>{{ shopcart.sprice }}</span></li>
+            {% endfor %}
+            <li>Toplam Fiyat <i></i> <span>{{ total }}</span></li>
+        </ul>
+    </div>
+    <div style="margin-right: 95px; margin-top: 20px;" class="col-md-8 address_form_agile">
+        <h4>Kargo Alıcı Bilgileri</h4>
+        <form name="order" action="{{ path('orders_new') }}" method="post" class="creditly-card-form agileinfo_form">
+            <section class="creditly-wrapper wthree, w3_agileits_wrapper">
+                <div class="information-wrapper">
+                    <div class="first-row form-group">
+                        <div class="controls">
+                            <input class="billing-address-name form-control" type="hidden" name="orders[amount]" value="{{ total }}" >
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Ad Soyad:  </label>
+                            <input class="billing-address-name form-control" type="text" name="orders[name]" value="{{ app.user.name }}">
+                        </div>
+                        <div class="w3_agileits_card_number_grids">
+                            <div class="w3_agileits_card_number_grid_left">
+                                <div class="controls">
+                                    <label class="control-label">Telefon:</label>
+                                    <input class="form-control" type="text" name="orders[phone]" value="{{ app.user.phone}}">
+                                </div>
+                            </div>
+                            <div class="w3_agileits_card_number_grid_right">
+                                <div class="controls">
+                                    <label class="control-label">Adres: </label>
+                                    <input class="form-control" type="text" name="orders[address]" value="{{ app.user.address}}">
+                                </div>
+                            </div>
+                            <div class="clear"> </div>
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Şehir: </label>
+                            <input class="form-control" type="text" name="orders[city]" value="{{ app.user.city}}">
+                        </div>
+                        <h4>Kredi Kartı Bilgileri</h4>
+                        <div class="controls">
+                            <label class="control-label">Kart Üzerindeki Ad Soyad</label>
+                            <input class="billing-address-name form-control" type="text" name="cardholdername" placeholder="Kart Adı Soyadı">
+                        </div>
+                        <div class="w3_agileits_card_number_grids">
+                            <div class="w3_agileits_card_number_grid_left">
+                                <div class="controls">
+                                    <label class="control-label">Kredi Kartı Numarası</label>
+                                    <input class="number credit-card-number form-control" type="text" name="cardnumber"
+                                           inputmode="numeric" autocomplete="cc-number" autocompletetype="cc-number" x-autocompletetype="cc-number"
+                                           placeholder="&#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149;">
+                                </div>
+                            </div>
+                            <div class="w3_agileits_card_number_grid_right">
+                                <div class="controls">
+                                    <label class="control-label">CVV</label>
+                                    <input class="security-code form-control"Â·
+                                           inputmode="numeric"
+                                           type="text" name="cardsecuritycode"
+                                           placeholder="&#149;&#149;&#149;">
+                                </div>
+                            </div>
+                            <input type="hidden" name="token" value="{{ csrf_token('form-order') }}"/>
+                            <div class="clear"> </div>
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Son Kullanma Tarihi</label>
+                            <input class="expiration-month-and-year form-control" type="text" name="expirationmonthandyear" placeholder="MM / YY">
+                        </div>
+                    </div>
+                    <div class="w3agile_newsletter_right">
+                        <input style="width: 50px;" type="submit" value="Ödeme Yap">
+                    </div>
+                </div>
+            </section>
+        </form>
+
+
+
+    </div>
+
+    <div class="clearfix"> </div>
+
+</div>

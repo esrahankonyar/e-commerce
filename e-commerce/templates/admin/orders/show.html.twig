@@ -1,0 +1,90 @@
+{% extends 'adminbase.html.twig' %}
+{% block content %}
+    <div style="margin-right: 95px; margin-top: 20px;" class="col-md-8 address_form_agile creditly-card-form agileinfo_form">
+    <section class=" creditly-wrapper wthree, w3_agileits_wrapper">
+        <div class="information-wrapper">
+            <div class="first-row form-group">
+                {{ include('messages.html.twig') }}
+                <div class="clear"> </div>
+            </div>
+            <div class="controls">
+                <label class="control-label">AD: </label>
+                <input class="form-control" type="text" name="orders[name]" value="{{ order.name }}">
+            </div>
+            <div class="w3_agileits_card_number_grid_right">
+                <div class="controls">
+                    <label class="control-label">Miktar: </label>
+                    <input class="form-control" type="text" name="orders[amount]" value="{{ order.amount }} ₺ ">
+                </div>
+            </div>
+            <div class="controls">
+                <label class="control-label">Adres: </label>
+                <input class="form-control" type="text" name="orders[address]" value="{{ order.address }}">
+            </div>
+            <div class="controls">
+                <label class="control-label">Şehir: </label>
+                <input class="form-control" type="text" name="orders[city]" value="{{ order.city }}">
+            </div>
+            <div class="controls">
+                <label class="control-label">Telefon: </label>
+                <input class="form-control" type="text" name="orders[phone]" value="{{ order.phone }}">
+            </div>
+            <form action="{{ path('admin_orders_update',{'id':order.id}) }}" method="post" class="creditly-card-form agileinfo_form">
+                <div class="controls">
+                    <label class="control-label">Sipariş Bilgi: </label>
+                    <textarea class="form-control" cols="100" rows="3" name="shipinfo">{{ order.shipinfo }}</textarea>
+                </div>
+                <div class="controls">
+                    <label class="control-label">Admin Notu: </label>
+                    <textarea class="form-control" cols="100" rows="3" name="note">{{ order.note }}</textarea>
+                </div>
+                <div class="controls">
+                    <label class="control-label">Durum: </label>
+                    <select name="status" class="form-control">
+                        <option>{{ order.status }}</option>
+                        <option>Accepted</option>
+                        <option>InShipping</option>
+                        <option>Canceled</option>
+                        <option>Completed</option>
+                    </select>
+                </div>
+                <input type="submit" value="Güncelle" style="margin-top: 10px;" class="btn btn-default">
+            </form>
+        </div>
+    </section>
+
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Ürün Adı</th>
+                    <th>Ürün Fiyatı</th>
+                    <th>Miktar</th>
+                    <th>Toplam Fiyat</th>
+                    <th>Durum</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for rs in orderdetail %}
+                    <tr >
+                        <td >{{ rs.name }}</td>
+                        <td >{{ rs.price }} ₺</td>
+                        <td >{{ rs.quantity }}</td>
+                        <td >{{ rs.amount}} ₺</td>
+                        <td >{{ rs.status}}</td>
+                    </tr>
+                {% else %}
+                    <tr >
+                        <td colspan="5">Sipariş Detay!</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="5"> Toplam Alışveriş Tutarı: {{ order.amount }} ₺</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+{% endblock %}

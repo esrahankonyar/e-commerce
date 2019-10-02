@@ -1,0 +1,11 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Product listesi{% endblock %}
+
+{% block content %}
+    <h1>Edit Product</h1>
+    {{ include('admin/messages.html.twig') }}
+    {{ include('admin/product/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+{% endblock %}

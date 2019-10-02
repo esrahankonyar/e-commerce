@@ -1,0 +1,60 @@
+{% extends 'frontbase.html.twig' %}
+{% block title %}Kullanıcı Bilgileri {% endblock %}
+{% block header %} {{ include ('home/_header.html.twig') }} {% endblock %}
+{% block sidebar %} {{ include ('home/_usersidebar.html.twig') }} {% endblock %}
+{% block content %}
+
+    <div class="banner">
+        <div class="w3l_banner_nav_right">
+            <!-- about -->
+            <div class="privacy about">
+                <h3>KULLANICI BİLGİLERİ</h3>
+                <div style="margin-top: 20px">
+                    <div >
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {{ include('messages.html.twig') }}
+                                <table class="table table-bordered table-striped" aria-describedby="dataTables-example_info">
+                                    <tbody>
+                                    <tr>
+                                        <th>Id</th>
+                                        <td>{{ app.user.id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>E-Mail</th>
+                                        <td>{{ app.user.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ad Soyad</th>
+                                        <td>{{ app.user.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Adres</th>
+                                        <td>{{ app.user.address}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Şehir</th>
+                                        <td>{{ app.user.city }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Telefon</th>
+                                        <td>{{ app.user.phone }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+
+            </div>
+            <!-- //about -->
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+{% endblock %}
+

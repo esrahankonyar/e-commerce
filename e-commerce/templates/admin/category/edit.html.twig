@@ -1,0 +1,15 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}Kategori Düzenle{% endblock %}
+{% block content %}
+    <h1 class="page-header">Kategori Düzenle</h1>
+    <div class="row">
+
+        {{ include('admin/category/_form.html.twig', {'button_label': 'Update'}) }}
+
+        <a href="{{ path('admin_category_index') }}">back to list</a>
+
+        {{ include('admin/category/_delete_form.html.twig') }}
+    </div>
+    <!-- /.col-lg-6 (nested) -->
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'frontbase.html.twig' %}
+{% block title %} {{ data[0].title }}{% endblock %}
+{% block keywords %}{{ data[0].keywords }}{% endblock %}
+{% block description %}{{ data[0].description }}{% endblock %}
+{% block header %} {{ include ('home/_header.html.twig') }} {% endblock %}
+{% block sidebar %} {{ include ('home/_sidebar.html.twig') }} {% endblock %}
+{% block content %}
+    <div class="w3l_banner_nav_right">
+        <div class="w3l_banner_nav_right_banner3">
+            <h3>{{ data[0].title }}<span class="blink_me"></span></h3>
+        </div>
+        <div class="w3ls_w3l_banner_nav_right_grid">
+            <div class="w3ls_w3l_banner_nav_right_grid1">
+                {% for rs in products %}
+                <div class="col-md-3 w3ls_w3l_banner_left">
+                    <div class="hover14 column">
+                        <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
+                            <div class="agile_top_brand_left_grid_pos">
+                                <img src="/assets/images/offer.png" alt=" " class="img-responsive" />
+                            </div>
+                            <div class="agile_top_brand_left_grid1">
+                                <figure>
+                                    <div class="snipcart-item block">
+                                        <div class="snipcart-thumb">
+                                            <a href="{{ path('product_detail',{'id':rs.id}) }}">
+                                                <img src="{{ asset('uploads') }}/images/{{ rs.image }}" alt=" " class="img-responsive" />
+                                            </a>
+                                            <p>{{ rs.title }}</p>
+                                            <h4>{{ rs.sprice }} ₺ <span></span></h4>
+                                            <div class="snipcart-details top_brand_home_details">
+                                                <form action="{{ path('product_detail', {'id': rs.id}) }}" >
+                                                    <input type="submit" name="submit" value="Satın Al" class="button" />
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    </div>
+{% endblock %}
+

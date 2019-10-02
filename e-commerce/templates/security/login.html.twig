@@ -1,0 +1,97 @@
+{% extends 'frontbase.html.twig' %}
+{% block title %}Giriş Yap {{ data[0].title }}{% endblock %}
+{% block keywords %}{{ data[0].keywords }}{% endblock %}
+{% block description %}{{ data[0].description }}{% endblock %}
+{% block header %} {{ include ('home/_header.html.twig') }} {% endblock %}
+{% block sidebar %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {{ include ('home/_usersidebar.html.twig') }}
+    {% else %}
+        {{ include ('home/_sidebar.html.twig') }}
+    {% endif %}
+{% endblock %}
+{% block content %}
+
+
+
+    <!-- about -->
+    <!-- banner -->
+    <div class="banner">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            Kullanıcı Adı: {{ app.user.name }}<br>
+            E-Mail: {{ app.user.email }}<br>
+            Kullanıcı Yetkisi: {% for item in app.user.roles %}
+                {{ item }}<br>
+            {% endfor %}
+            <hr>
+        {% else %}
+            {{ include('messages.html.twig') }}
+            <div class="w3_login">
+
+                <h3 style="margin-left: 250px;">Giriş Yap & Kayıt Ol</h3>
+                <div class="w3_login_module" style="margin-left: 250px;">
+
+                    <div class="module form-module">
+                        <div class="toggle">
+                        </div>
+                        <div class="form">
+                            <h2>Lütfen Giriş Yapınız</h2>
+                            <form method="post">
+                                {% if error %}
+                                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                {% endif %}
+                                <label for="inputEmail" class="sr-only">Email</label>
+                                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+                                <label for="inputPassword" class="sr-only">Password</label>
+                                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Parola" required>
+
+                                <input type="hidden" name="_csrf_token"
+                                       value="{{ csrf_token('authenticate') }}"
+                                >
+
+                                {#
+                                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                                    See https://symfony.com/doc/current/security/remember_me.html
+
+                                    <div class="checkbox mb-3">
+                                        <label>
+                                            <input type="checkbox" name="_remember_me"> Remember me
+                                        </label>
+                                    </div>
+                                #}
+
+                                <button class="btn btn-lg btn-primary" type="submit">
+                                    Giriş Yap
+                                </button>
+                                <button class="btn btn-lg btn-primary"><a href="{{ path('new_user') }}" style=" color: #FFFFFF " >Kayıt Ol</a></button>
+                            </form>
+                        </div>
+{# kayıt ol
+                        <div class="form">
+                            <h2>Kayıt Ol</h2>
+                            <form action="#" method="post">
+                                <input type="text" name="Username" placeholder="Username" required=" ">
+                                <input type="password" name="Password" placeholder="Password" required=" ">
+                                <input type="email" name="Email" placeholder="Email Address" required=" ">
+                                <input type="text" name="Phone" placeholder="Phone Number" required=" ">
+                                <input type="submit" value="Kayıt Ol">
+                            </form>
+                        </div>
+#}
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        {% endif %}
+        </p>
+    </div>
+    <!-- //about -->
+    </div>
+    <div class="clearfix"></div>
+    </div>
+{% endblock %}
